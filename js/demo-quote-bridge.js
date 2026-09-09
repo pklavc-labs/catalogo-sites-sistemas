@@ -57,6 +57,7 @@
   }
 
   /* The panel belongs to the customizer script and is created before this file runs. */
-  const quoteButton = document.querySelector('.cc-quote');
-  if (quoteButton) quoteButton.onclick = open;
+  document.addEventListener('click', event => {
+    if (event.target.closest('[data-demo-quote]')) { event.preventDefault(); open(); }
+  });
 })();

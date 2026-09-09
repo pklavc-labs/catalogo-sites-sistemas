@@ -1,5 +1,8 @@
 /* DOM implementation of the supplied SqueezeCarousel component for static hosting. */
 (() => {
+  const layoutFix = document.createElement('style');
+  layoutFix.textContent = '.sq-panel,.sq-panel-item{width:100%;min-width:0}.sq-panel-copy{min-width:0}';
+  document.head.append(layoutFix);
   const categories = [
     ['ecommerce', 'E-commerce'], ['servicos', 'Serviços'], ['portfolio', 'Portfólio'],
     ['blog', 'Blog'], ['sistemas', 'Sistemas / Dashboards'], ['landing-pages', 'Landing Pages'],
