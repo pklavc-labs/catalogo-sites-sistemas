@@ -5,7 +5,7 @@
   "category": "ecommerce",
   "language": "pt",
   "description": "Loja virtual limpa, objetiva e focada em produtos.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-shop-homepage.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/shop-homepage.png"
 }

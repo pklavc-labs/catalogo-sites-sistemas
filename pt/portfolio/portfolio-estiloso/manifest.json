@@ -1,0 +1,41 @@
+{
+  "id": "portfolio-002",
+  "slug": "portfolio-estiloso",
+  "name": "Stylish Portfolio",
+  "category": "portfolio",
+  "categoryLabel": "Portfólio",
+  "language": "pt",
+  "description": "Portfólio visual para profissionais e estúdios.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/stylish-portfolio.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-stylish-portfolio.git",
+    "project": "Start Bootstrap Stylish Portfolio",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "6.0.6",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "portfólio",
+    "criativo",
+    "projetos"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

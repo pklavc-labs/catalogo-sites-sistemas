@@ -5,7 +5,7 @@
   "category": "servicos",
   "language": "pt",
   "description": "Site institucional para agências e serviços criativos.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-agency.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/agency.png"
 }

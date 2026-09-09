@@ -1,0 +1,41 @@
+{
+  "id": "blog-003",
+  "slug": "artigo-editorial",
+  "name": "Blog Post",
+  "category": "blog",
+  "categoryLabel": "Blog",
+  "language": "pt",
+  "description": "Layout de artigo completo para publicação editorial.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/blog-post.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-blog-post.git",
+    "project": "Start Bootstrap Blog Post",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.9",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "blog",
+    "artigo",
+    "conteúdo"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

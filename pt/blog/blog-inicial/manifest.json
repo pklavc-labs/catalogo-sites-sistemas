@@ -1,0 +1,41 @@
+{
+  "id": "blog-002",
+  "slug": "blog-inicial",
+  "name": "Blog Home",
+  "category": "blog",
+  "categoryLabel": "Blog",
+  "language": "pt",
+  "description": "Página inicial de blog para conteúdos recorrentes.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/blog-home.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-blog-home.git",
+    "project": "Start Bootstrap Blog Home",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.9",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "blog",
+    "conteúdo",
+    "artigos"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

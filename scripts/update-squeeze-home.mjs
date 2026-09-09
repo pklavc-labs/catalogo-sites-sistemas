@@ -85,7 +85,8 @@ const js = `(() => {
 const page = depth => `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Catálogo Web</title><meta name="description" content="Modelos de sites, sistemas e experiências web."><link rel="icon" href="${depth}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${depth}css/squeeze-series.css"></head><body><main class="squeeze-series" data-squeeze-series aria-label="Modelos disponíveis"></main><script src="${depth}js/squeeze-series.js" defer></script></body></html>`;
 
 await writeFile('css/squeeze-series.css', css, 'utf8');
-await writeFile('js/squeeze-series.js', js, 'utf8');
+// The interaction implementation lives in js/squeeze-series.js so it can remain
+// a faithful, maintainable DOM port of the supplied React component.
 await writeFile('index.html', page(''), 'utf8');
 await writeFile('pt/index.html', page('../'), 'utf8');
 console.log(`Squeeze series generated for ${templates.length} templates.`);

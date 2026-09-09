@@ -6,7 +6,7 @@
     "category": "ecommerce",
     "language": "pt",
     "description": "Loja virtual limpa, objetiva e focada em produtos.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-shop-homepage.git",
@@ -36,7 +36,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/shop-homepage.png"
   },
   {
     "id": "servicos-001",
@@ -45,7 +46,7 @@
     "category": "servicos",
     "language": "pt",
     "description": "Site institucional para agências e serviços criativos.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-agency.git",
@@ -75,7 +76,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/agency.png"
   },
   {
     "id": "portfolio-001",
@@ -84,7 +86,7 @@
     "category": "portfolio",
     "language": "pt",
     "description": "Portfólio profissional para apresentar projetos e competências.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-freelancer.git",
@@ -114,7 +116,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/freelancer.png"
   },
   {
     "id": "landing-001",
@@ -123,7 +126,7 @@
     "category": "landing-pages",
     "language": "pt",
     "description": "Landing page com chamada direta para conversão.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-landing-page.git",
@@ -153,7 +156,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/landing-page.png"
   },
   {
     "id": "servicos-002",
@@ -162,7 +166,7 @@
     "category": "servicos",
     "language": "pt",
     "description": "Página empresarial direta para serviços e negócios locais.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-business-frontpage.git",
@@ -192,7 +196,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/business-frontpage.png"
   },
   {
     "id": "servicos-003",
@@ -201,7 +206,7 @@
     "category": "servicos",
     "language": "pt",
     "description": "Site empresarial multipágina, pronto para conteúdos completos.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-modern-business.git",
@@ -231,7 +236,8 @@
       "texts": true,
       "font": true,
       "buttonStyle": true
-    }
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/modern-business.png"
   },
   {
     "id": "sistemas-001",
@@ -240,7 +246,7 @@
     "category": "sistemas",
     "language": "pt",
     "description": "Painel administrativo para sistemas, indicadores e operação.",
-    "preview": "preview.svg",
+    "preview": "preview.png",
     "demo": "demo/",
     "source": {
       "repository": "https://github.com/StartBootstrap/startbootstrap-sb-admin.git",
@@ -259,6 +265,458 @@
       "dashboard",
       "sistema",
       "admin"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    },
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/sb-admin.png"
+  },
+  {
+    "id": "ecommerce-002",
+    "slug": "produto-detalhe",
+    "name": "Shop Item",
+    "category": "ecommerce",
+    "categoryLabel": "E-commerce",
+    "language": "pt",
+    "description": "Página de produto pronta para uma loja virtual.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/shop-item.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-shop-item.git",
+      "project": "Start Bootstrap Shop Item",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "ecommerce",
+      "produto",
+      "loja"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "blog-001",
+    "slug": "blog-clean",
+    "name": "Clean Blog",
+    "category": "blog",
+    "categoryLabel": "Blog",
+    "language": "pt",
+    "description": "Tema editorial limpo para artigos e notícias.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/clean-blog.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-clean-blog.git",
+      "project": "Start Bootstrap Clean Blog",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.9",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "blog",
+      "notícias",
+      "editorial"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "blog-002",
+    "slug": "blog-inicial",
+    "name": "Blog Home",
+    "category": "blog",
+    "categoryLabel": "Blog",
+    "language": "pt",
+    "description": "Página inicial de blog para conteúdos recorrentes.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/blog-home.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-blog-home.git",
+      "project": "Start Bootstrap Blog Home",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.9",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "blog",
+      "conteúdo",
+      "artigos"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "blog-003",
+    "slug": "artigo-editorial",
+    "name": "Blog Post",
+    "category": "blog",
+    "categoryLabel": "Blog",
+    "language": "pt",
+    "description": "Layout de artigo completo para publicação editorial.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/blog-post.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-blog-post.git",
+      "project": "Start Bootstrap Blog Post",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.9",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "blog",
+      "artigo",
+      "conteúdo"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "portfolio-002",
+    "slug": "portfolio-estiloso",
+    "name": "Stylish Portfolio",
+    "category": "portfolio",
+    "categoryLabel": "Portfólio",
+    "language": "pt",
+    "description": "Portfólio visual para profissionais e estúdios.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/stylish-portfolio.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-stylish-portfolio.git",
+      "project": "Start Bootstrap Stylish Portfolio",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "portfólio",
+      "criativo",
+      "projetos"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "servicos-004",
+    "slug": "empresa-criativa",
+    "name": "Creative",
+    "category": "servicos",
+    "categoryLabel": "Serviços",
+    "language": "pt",
+    "description": "Landing institucional para empresas e serviços.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/creative.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-creative.git",
+      "project": "Start Bootstrap Creative",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "7.0.7",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "empresa",
+      "serviços",
+      "landing"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "servicos-005",
+    "slug": "empresa-casual",
+    "name": "Business Casual",
+    "category": "servicos",
+    "categoryLabel": "Serviços",
+    "language": "pt",
+    "description": "Site empresarial completo para negócios locais.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/business-casual.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-business-casual.git",
+      "project": "Start Bootstrap Business Casual",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "7.0.9",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "empresa",
+      "institucional",
+      "negócio"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "landing-002",
+    "slug": "app-lancamento",
+    "name": "New Age",
+    "category": "landing-pages",
+    "categoryLabel": "Landing Pages",
+    "language": "pt",
+    "description": "Landing page de aplicativo e produto digital.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/new-age.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-new-age.git",
+      "project": "Start Bootstrap New Age",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.7",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "landing",
+      "aplicativo",
+      "conversão"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "landing-003",
+    "slug": "pagina-impacto",
+    "name": "One Page Wonder",
+    "category": "landing-pages",
+    "categoryLabel": "Landing Pages",
+    "language": "pt",
+    "description": "Landing visual de página única.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/one-page-wonder.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-one-page-wonder.git",
+      "project": "Start Bootstrap One Page Wonder",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "landing",
+      "one page",
+      "campanha"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "sistemas-002",
+    "slug": "painel-admin2",
+    "name": "SB Admin 2",
+    "category": "sistemas",
+    "categoryLabel": "Sistemas",
+    "language": "pt",
+    "description": "Dashboard administrativo com páginas de operação.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/sb-admin-2.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git",
+      "project": "Start Bootstrap SB Admin 2",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "4.1.4",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "dashboard",
+      "admin",
+      "sistema"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "sistemas-003",
+    "slug": "painel-sidebar",
+    "name": "Simple Sidebar",
+    "category": "sistemas",
+    "categoryLabel": "Sistemas",
+    "language": "pt",
+    "description": "Interface de sistema com navegação lateral.",
+    "preview": "preview.png",
+    "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/simple-sidebar.png",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-simple-sidebar.git",
+      "project": "Start Bootstrap Simple Sidebar",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "dashboard",
+      "sidebar",
+      "sistema"
     ],
     "customizable": {
       "logo": true,

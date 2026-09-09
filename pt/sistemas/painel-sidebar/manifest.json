@@ -1,0 +1,41 @@
+{
+  "id": "sistemas-003",
+  "slug": "painel-sidebar",
+  "name": "Simple Sidebar",
+  "category": "sistemas",
+  "categoryLabel": "Sistemas",
+  "language": "pt",
+  "description": "Interface de sistema com navegação lateral.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/simple-sidebar.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-simple-sidebar.git",
+    "project": "Start Bootstrap Simple Sidebar",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "6.0.6",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "dashboard",
+    "sidebar",
+    "sistema"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

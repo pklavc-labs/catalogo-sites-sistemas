@@ -1,0 +1,41 @@
+{
+  "id": "servicos-005",
+  "slug": "empresa-casual",
+  "name": "Business Casual",
+  "category": "servicos",
+  "categoryLabel": "Serviços",
+  "language": "pt",
+  "description": "Site empresarial completo para negócios locais.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/business-casual.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-business-casual.git",
+    "project": "Start Bootstrap Business Casual",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "7.0.9",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "empresa",
+    "institucional",
+    "negócio"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

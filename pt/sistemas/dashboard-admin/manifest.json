@@ -5,7 +5,7 @@
   "category": "sistemas",
   "language": "pt",
   "description": "Painel administrativo para sistemas, indicadores e operação.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-sb-admin.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/sb-admin.png"
 }

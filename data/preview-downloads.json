@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ecommerce-001",
+    "output": "pt/ecommerce/loja-moderna/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/shop-homepage.png"
+  },
+  {
+    "id": "servicos-001",
+    "output": "pt/servicos/agencia-moderna/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/agency.png"
+  },
+  {
+    "id": "portfolio-001",
+    "output": "pt/portfolio/portfolio-freelancer/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/freelancer.png"
+  },
+  {
+    "id": "landing-001",
+    "output": "pt/landing-pages/landing-moderna/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/landing-page.png"
+  },
+  {
+    "id": "servicos-002",
+    "output": "pt/servicos/empresa-moderna/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/business-frontpage.png"
+  },
+  {
+    "id": "servicos-003",
+    "output": "pt/servicos/empresa-completa/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/modern-business.png"
+  },
+  {
+    "id": "sistemas-001",
+    "output": "pt/sistemas/dashboard-admin/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/sb-admin.png"
+  },
+  {
+    "id": "ecommerce-002",
+    "output": "pt/ecommerce/produto-detalhe/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/shop-item.png"
+  },
+  {
+    "id": "blog-001",
+    "output": "pt/blog/blog-clean/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/clean-blog.png"
+  },
+  {
+    "id": "blog-002",
+    "output": "pt/blog/blog-inicial/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/blog-home.png"
+  },
+  {
+    "id": "blog-003",
+    "output": "pt/blog/artigo-editorial/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/blog-post.png"
+  },
+  {
+    "id": "portfolio-002",
+    "output": "pt/portfolio/portfolio-estiloso/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/stylish-portfolio.png"
+  },
+  {
+    "id": "servicos-004",
+    "output": "pt/servicos/empresa-criativa/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/creative.png"
+  },
+  {
+    "id": "servicos-005",
+    "output": "pt/servicos/empresa-casual/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/business-casual.png"
+  },
+  {
+    "id": "landing-002",
+    "output": "pt/landing-pages/app-lancamento/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/new-age.png"
+  },
+  {
+    "id": "landing-003",
+    "output": "pt/landing-pages/pagina-impacto/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/one-page-wonder.png"
+  },
+  {
+    "id": "sistemas-002",
+    "output": "pt/sistemas/painel-admin2/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/themes/sb-admin-2.png"
+  },
+  {
+    "id": "sistemas-003",
+    "output": "pt/sistemas/painel-sidebar/preview.png",
+    "url": "https://assets.startbootstrap.com/img/screenshots/templates/simple-sidebar.png"
+  }
+]

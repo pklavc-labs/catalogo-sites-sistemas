@@ -5,7 +5,7 @@
   "category": "servicos",
   "language": "pt",
   "description": "Página empresarial direta para serviços e negócios locais.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-business-frontpage.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/business-frontpage.png"
 }

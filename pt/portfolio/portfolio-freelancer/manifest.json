@@ -5,7 +5,7 @@
   "category": "portfolio",
   "language": "pt",
   "description": "Portfólio profissional para apresentar projetos e competências.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-freelancer.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/freelancer.png"
 }

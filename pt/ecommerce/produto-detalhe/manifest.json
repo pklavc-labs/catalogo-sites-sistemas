@@ -1,0 +1,41 @@
+{
+  "id": "ecommerce-002",
+  "slug": "produto-detalhe",
+  "name": "Shop Item",
+  "category": "ecommerce",
+  "categoryLabel": "E-commerce",
+  "language": "pt",
+  "description": "Página de produto pronta para uma loja virtual.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/templates/shop-item.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-shop-item.git",
+    "project": "Start Bootstrap Shop Item",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.6",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "ecommerce",
+    "produto",
+    "loja"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

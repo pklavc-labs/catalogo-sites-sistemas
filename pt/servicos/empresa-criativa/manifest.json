@@ -1,0 +1,41 @@
+{
+  "id": "servicos-004",
+  "slug": "empresa-criativa",
+  "name": "Creative",
+  "category": "servicos",
+  "categoryLabel": "Serviços",
+  "language": "pt",
+  "description": "Landing institucional para empresas e serviços.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/creative.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-creative.git",
+    "project": "Start Bootstrap Creative",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "7.0.7",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "empresa",
+    "serviços",
+    "landing"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

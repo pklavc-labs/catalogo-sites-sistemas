@@ -5,7 +5,7 @@
   "category": "landing-pages",
   "language": "pt",
   "description": "Landing page com chamada direta para conversão.",
-  "preview": "preview.svg",
+  "preview": "preview.png",
   "demo": "demo/",
   "source": {
     "repository": "https://github.com/StartBootstrap/startbootstrap-landing-page.git",
@@ -35,5 +35,6 @@
     "texts": true,
     "font": true,
     "buttonStyle": true
-  }
+  },
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/landing-page.png"
 }

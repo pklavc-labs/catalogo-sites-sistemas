@@ -1,0 +1,41 @@
+{
+  "id": "sistemas-002",
+  "slug": "painel-admin2",
+  "name": "SB Admin 2",
+  "category": "sistemas",
+  "categoryLabel": "Sistemas",
+  "language": "pt",
+  "description": "Dashboard administrativo com páginas de operação.",
+  "preview": "preview.png",
+  "previewSource": "https://assets.startbootstrap.com/img/screenshots/themes/sb-admin-2.png",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git",
+    "project": "Start Bootstrap SB Admin 2",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "4.1.4",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "dashboard",
+    "admin",
+    "sistema"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}
