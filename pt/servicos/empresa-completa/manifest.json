@@ -1,0 +1,39 @@
+{
+  "id": "servicos-003",
+  "slug": "empresa-completa",
+  "name": "Empresa Completa",
+  "category": "servicos",
+  "language": "pt",
+  "description": "Site empresarial multipágina, pronto para conteúdos completos.",
+  "preview": "preview.svg",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-modern-business.git",
+    "project": "Start Bootstrap Modern Business",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.7",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "empresa",
+    "multipágina",
+    "negócio"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

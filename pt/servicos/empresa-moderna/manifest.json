@@ -1,0 +1,39 @@
+{
+  "id": "servicos-002",
+  "slug": "empresa-moderna",
+  "name": "Empresa Moderna",
+  "category": "servicos",
+  "language": "pt",
+  "description": "Página empresarial direta para serviços e negócios locais.",
+  "preview": "preview.svg",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-business-frontpage.git",
+    "project": "Start Bootstrap Business Frontpage",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.9",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "empresa",
+    "institucional",
+    "serviços"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

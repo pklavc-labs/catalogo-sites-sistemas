@@ -1,0 +1,39 @@
+{
+  "id": "portfolio-001",
+  "slug": "portfolio-freelancer",
+  "name": "Portfólio Freelancer",
+  "category": "portfolio",
+  "language": "pt",
+  "description": "Portfólio profissional para apresentar projetos e competências.",
+  "preview": "preview.svg",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-freelancer.git",
+    "project": "Start Bootstrap Freelancer",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "7.0.7",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "portfólio",
+    "freelancer",
+    "projetos"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}

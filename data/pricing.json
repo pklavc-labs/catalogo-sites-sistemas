@@ -1,0 +1,70 @@
+{
+  "currency": "BRL",
+  "base": {
+    "ecommerce": 2490,
+    "servicos": 1890,
+    "portfolio": 1490,
+    "blog": 1790,
+    "sistemas": 3490,
+    "landing-pages": 1290,
+    "default": 1590
+  },
+  "extras": {
+    "personalizacao": {
+      "label": "Personalização visual",
+      "price": 550
+    },
+    "formulario": {
+      "label": "Formulários",
+      "price": 350
+    },
+    "whatsapp": {
+      "label": "Integração com WhatsApp",
+      "price": 250
+    },
+    "email": {
+      "label": "Integração com e-mail",
+      "price": 300
+    },
+    "admin": {
+      "label": "Painel administrativo",
+      "price": 1800
+    },
+    "banco": {
+      "label": "Banco de dados",
+      "price": 1400
+    },
+    "autenticacao": {
+      "label": "Autenticação",
+      "price": 950
+    },
+    "integracoes": {
+      "label": "Integrações externas",
+      "price": 900
+    },
+    "dominio": {
+      "label": "Domínio",
+      "price": 120
+    },
+    "hospedagem": {
+      "label": "Hospedagem (1º ano)",
+      "price": 360
+    },
+    "manutencao": {
+      "label": "Manutenção mensal",
+      "price": 250
+    },
+    "seo": {
+      "label": "SEO essencial",
+      "price": 650
+    },
+    "analytics": {
+      "label": "Analytics",
+      "price": 280
+    },
+    "adicionais": {
+      "label": "Funcionalidades adicionais",
+      "price": 500
+    }
+  }
+}

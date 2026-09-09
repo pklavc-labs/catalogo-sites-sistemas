@@ -1,0 +1,275 @@
+[
+  {
+    "id": "ecommerce-001",
+    "slug": "loja-moderna",
+    "name": "Loja Moderna",
+    "category": "ecommerce",
+    "language": "pt",
+    "description": "Loja virtual limpa, objetiva e focada em produtos.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-shop-homepage.git",
+      "project": "Start Bootstrap Shop Homepage",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "ecommerce",
+      "loja",
+      "produtos"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "servicos-001",
+    "slug": "agencia-moderna",
+    "name": "Agência Moderna",
+    "category": "servicos",
+    "language": "pt",
+    "description": "Site institucional para agências e serviços criativos.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-agency.git",
+      "project": "Start Bootstrap Agency",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "7.0.12",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "agência",
+      "serviços",
+      "institucional"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "portfolio-001",
+    "slug": "portfolio-freelancer",
+    "name": "Portfólio Freelancer",
+    "category": "portfolio",
+    "language": "pt",
+    "description": "Portfólio profissional para apresentar projetos e competências.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-freelancer.git",
+      "project": "Start Bootstrap Freelancer",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "7.0.7",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "portfólio",
+      "freelancer",
+      "projetos"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "landing-001",
+    "slug": "landing-moderna",
+    "name": "Landing Moderna",
+    "category": "landing-pages",
+    "language": "pt",
+    "description": "Landing page com chamada direta para conversão.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-landing-page.git",
+      "project": "Start Bootstrap Landing Page",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "6.0.6",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "landing page",
+      "conversão",
+      "captação"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "servicos-002",
+    "slug": "empresa-moderna",
+    "name": "Empresa Moderna",
+    "category": "servicos",
+    "language": "pt",
+    "description": "Página empresarial direta para serviços e negócios locais.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-business-frontpage.git",
+      "project": "Start Bootstrap Business Frontpage",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.9",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "empresa",
+      "institucional",
+      "serviços"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "servicos-003",
+    "slug": "empresa-completa",
+    "name": "Empresa Completa",
+    "category": "servicos",
+    "language": "pt",
+    "description": "Site empresarial multipágina, pronto para conteúdos completos.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-modern-business.git",
+      "project": "Start Bootstrap Modern Business",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "5.0.7",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "empresa",
+      "multipágina",
+      "negócio"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  },
+  {
+    "id": "sistemas-001",
+    "slug": "dashboard-admin",
+    "name": "Dashboard Admin",
+    "category": "sistemas",
+    "language": "pt",
+    "description": "Painel administrativo para sistemas, indicadores e operação.",
+    "preview": "preview.svg",
+    "demo": "demo/",
+    "source": {
+      "repository": "https://github.com/StartBootstrap/startbootstrap-sb-admin.git",
+      "project": "Start Bootstrap SB Admin",
+      "author": "Start Bootstrap"
+    },
+    "license": "MIT",
+    "version": "7.0.7",
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap"
+    ],
+    "tags": [
+      "dashboard",
+      "sistema",
+      "admin"
+    ],
+    "customizable": {
+      "logo": true,
+      "businessName": true,
+      "primaryColor": true,
+      "secondaryColor": true,
+      "accentColor": true,
+      "heroImage": true,
+      "texts": true,
+      "font": true,
+      "buttonStyle": true
+    }
+  }
+]

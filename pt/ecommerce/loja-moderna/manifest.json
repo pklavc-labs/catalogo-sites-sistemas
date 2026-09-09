@@ -1,0 +1,39 @@
+{
+  "id": "ecommerce-001",
+  "slug": "loja-moderna",
+  "name": "Loja Moderna",
+  "category": "ecommerce",
+  "language": "pt",
+  "description": "Loja virtual limpa, objetiva e focada em produtos.",
+  "preview": "preview.svg",
+  "demo": "demo/",
+  "source": {
+    "repository": "https://github.com/StartBootstrap/startbootstrap-shop-homepage.git",
+    "project": "Start Bootstrap Shop Homepage",
+    "author": "Start Bootstrap"
+  },
+  "license": "MIT",
+  "version": "5.0.6",
+  "technologies": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "tags": [
+    "ecommerce",
+    "loja",
+    "produtos"
+  ],
+  "customizable": {
+    "logo": true,
+    "businessName": true,
+    "primaryColor": true,
+    "secondaryColor": true,
+    "accentColor": true,
+    "heroImage": true,
+    "texts": true,
+    "font": true,
+    "buttonStyle": true
+  }
+}
