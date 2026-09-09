@@ -3,6 +3,9 @@
   const layoutFix = document.createElement('style');
   layoutFix.textContent = '.sq-panel,.sq-panel-item{width:100%;min-width:0}.sq-panel-copy{min-width:0}.sq-blog{font-family:Inter,ui-sans-serif,system-ui,sans-serif}.sq-blog-window{overflow:hidden;cursor:grab;touch-action:pan-y}.sq-blog-window.dragging{cursor:grabbing}.sq-blog-track{display:flex;gap:18px;transition:transform .7s cubic-bezier(.16,1,.3,1);will-change:transform}.sq-blog-card{flex:0 0 min(52vw,650px);position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/9;background:#202632;user-select:none}.sq-blog-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}.sq-blog-card:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#07090ecc,transparent 62%)}.sq-blog-card div{position:absolute;z-index:1;inset:auto 20px 18px;color:#fff}.sq-blog-card strong{display:block;font-size:21px;letter-spacing:-.04em}.sq-blog-card span{display:block;margin-top:4px;color:#d0d7e5;font-size:14px}.sq-blog-all{display:block;width:max-content;margin:22px auto 0;color:#fff;text-decoration:none;font-size:15px;font-weight:600}.sq-blog-all:hover,.sq-blog-all:focus-visible{color:#a5b4fc;text-decoration:underline}@media(max-width:760px){.sq-blog-track{gap:12px}.sq-blog-card{flex-basis:82vw}.sq-blog-card div{inset:auto 15px 14px}.sq-blog-card strong{font-size:18px}}';
   document.head.append(layoutFix);
+  const overflowFix = document.createElement('style');
+  overflowFix.textContent = 'html,body{overflow-x:hidden}.squeeze-series{box-sizing:border-box}.sq-window,.sq-blog-window{max-width:100%}';
+  document.head.append(overflowFix);
   const categories = [
     ['ecommerce', 'E-commerce'], ['servicos', 'Serviços'], ['portfolio', 'Portfólio'],
     ['blog', 'Blog'], ['sistemas', 'Sistemas / Dashboards'], ['landing-pages', 'Landing Pages'],
