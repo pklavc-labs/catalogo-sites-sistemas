@@ -34,7 +34,7 @@ async function copyDemo(source, destination, model) {
   const index = path.join(destination, 'index.html');
   if (existsSync(index)) {
     const html = await readFile(index, 'utf8');
-    const hook = `\n<!-- Camada de demonstração do catálogo; não integra o design entregue. -->\n<script src="../../../../js/demo-customizer.js" data-catalog-template="${model.id}" data-catalog-model="${model.slug}" data-catalog-category="${model.category}" data-catalog-name="${esc(model.name)}"></script>\n`;
+    const hook = `\n<!-- Camada de demonstração do catálogo; não integra o design entregue. -->\n<script src="../../../../js/demo-customizer.js" data-catalog-template="${model.id}" data-catalog-model="${model.slug}" data-catalog-category="${model.category}" data-catalog-name="${esc(model.name)}"></script>\n<script src="../../../../js/demo-quote-bridge.js" data-catalog-template="${model.id}"></script>\n`;
     await writeFile(index, html.replace('</body>', `${hook}</body>`), 'utf8');
   }
 }
@@ -72,7 +72,8 @@ const demoJs = `(()=>{const s=document.currentScript;const id=s?.dataset.catalog
 const pricing = { currency: 'BRL', base: { ecommerce: 2490, servicos: 1890, portfolio: 1490, blog: 1790, sistemas: 3490, 'landing-pages': 1290, default: 1590 }, extras: { personalizacao: { label:'Personalização visual', price: 550 }, formulario: { label:'Formulários', price: 350 }, whatsapp: { label:'Integração com WhatsApp', price: 250 }, email: { label:'Integração com e-mail', price: 300 }, admin: { label:'Painel administrativo', price: 1800 }, banco: { label:'Banco de dados', price: 1400 }, autenticacao: { label:'Autenticação', price: 950 }, integracoes: { label:'Integrações externas', price: 900 }, dominio: { label:'Domínio', price: 120 }, hospedagem: { label:'Hospedagem (1º ano)', price: 360 }, manutencao: { label:'Manutenção mensal', price: 250 }, seo: { label:'SEO essencial', price: 650 }, analytics: { label:'Analytics', price: 280 }, adicionais: { label:'Funcionalidades adicionais', price: 500 } } };
 
 await file(out('index.html'), rootPage());
-await file(out('css/catalog.css'), catalogCss); await file(out('js/catalog.js'), catalogJs); await file(out('js/quote.js'), quoteJs); await file(out('js/demo-customizer.js'), demoJs);
+const quoteOutput = quoteJs.replace(/orçamento:[\r\n]+'\+text/, "orçamento:\\n'+text");
+await file(out('css/catalog.css'), catalogCss); await file(out('js/catalog.js'), catalogJs); await file(out('js/quote.js'), quoteOutput); await file(out('js/demo-customizer.js'), demoJs);
 await file(out('assets/favicon.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#4f46e5"/><path d="M32 10 54 32 32 54 10 32Z" fill="white"/></svg>');
 await file(out('data/pricing.json'), JSON.stringify(pricing, null, 2));
 const entries=[];
