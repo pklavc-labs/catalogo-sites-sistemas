@@ -1,7 +1,7 @@
 /* Local order-style quote builder for isolated template demos. */
 (() => {
   const script = document.currentScript;
-  const base = script?.src ? new URL('../../../../', script.src).href : '/';
+  const base = script?.src ? new URL('../', script.src).href : new URL('./', location.href).href;
   const cacheVersion = script?.src ? new URL(script.src).searchParams.get('v') : '';
   const dataUrl = new URL(`data/templates.json${cacheVersion ? `?v=${cacheVersion}` : ''}`, base);
   const pricingUrl = new URL(`data/pricing.json${cacheVersion ? `?v=${cacheVersion}` : ''}`, base);

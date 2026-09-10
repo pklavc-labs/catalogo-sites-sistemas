@@ -1,11 +1,14 @@
 (() => {
+  const source = document.currentScript;
+  const appBase = source?.src ? new URL('../', source.src) : new URL('./', location.href);
+  const appUrl = path => new URL(String(path).replace(/^\/+/, ''), appBase).href;
   const money = value => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(value);
   const quoteCode = () => Array.from(crypto.getRandomValues(new Uint8Array(5)), value => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[value % 32]).join('');
   let pricing;
 
   const currentTemplate = async () => {
     try {
-      const templates = await fetch('/data/templates.json').then(response => response.json());
+      const templates = await fetch(appUrl('data/templates.json')).then(response => response.json());
       return templates.find(item => item.id === document.body.dataset.templateId);
     } catch { return null; }
   };
@@ -24,7 +27,7 @@
     const modal = ensureModal();
     const model = await currentTemplate() || { id: 'catalogo-geral', name: 'Projeto sob medida', category: 'default', language: 'pt', version: '1.0.0' };
     if (!pricing) {
-      try { pricing = await fetch('/data/pricing.json').then(response => response.json()); }
+      try { pricing = await fetch(appUrl('data/pricing.json')).then(response => response.json()); }
       catch { pricing = { base: { default: 0 }, extras: {} }; }
     }
     const base = pricing.base[model.category] ?? pricing.base.default ?? 0;

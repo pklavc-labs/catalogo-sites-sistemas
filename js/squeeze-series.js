@@ -1,6 +1,9 @@
 /* DOM implementation of the supplied SqueezeCarousel component for static hosting. */
 (() => {
-  const buildVersion = new URL(document.currentScript.src).searchParams.get('v') || '';
+  const source = document.currentScript;
+  const appBase = source?.src ? new URL('../', source.src) : new URL('./', location.href);
+  const appUrl = path => new URL(String(path).replace(/^\/+/, ''), appBase).href;
+  const buildVersion = source?.src ? new URL(source.src).searchParams.get('v') || '' : '';
   const versioned = url => buildVersion ? `${url}${url.includes('?') ? '&' : '?'}v=${buildVersion}` : url;
   const layoutFix = document.createElement('style');
   layoutFix.textContent = '.sq-panel,.sq-panel-item{width:100%;min-width:0}.sq-panel-copy{min-width:0}';
@@ -19,13 +22,13 @@
   const STRETCHED = [0, 0.71, 0.4, 0.25];
   const SQUEEZED = [-0.12, 0.59, 0.28, 0.13];
   const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' }[char]));
-  const pathOf = item => `/pt/${item.category}/${item.slug}/`;
+  const pathOf = item => appUrl(`pt/${item.category}/${item.slug}/`);
   const previewOf = item => versioned(`${pathOf(item)}${item.preview}`);
 
   function createCarousel([category, label], templates) {
     const slides = templates.map(template => ({ ...template, overlay: label, action: 'Visualizar demo', href: `${pathOf(template)}demo/` }));
-    slides.push({ id: `more-${category}`, name: 'Ver mais', description: 'Veja todos os modelos desta categoria.', overlay: label, action: 'Ver todos os modelos', href: `/pt/${category}/`, fallback: true });
-    if (!templates.length) slides.splice(0, 1, { id: `coming-${category}`, name: 'Em breve', description: 'Novos modelos serão adicionados aqui.', overlay: label, action: 'Abrir categoria', href: `/pt/${category}/`, fallback: true });
+    slides.push({ id: `more-${category}`, name: 'Ver mais', description: 'Veja todos os modelos desta categoria.', overlay: label, action: 'Ver todos os modelos', href: appUrl(`pt/${category}/`), fallback: true });
+    if (!templates.length) slides.splice(0, 1, { id: `coming-${category}`, name: 'Em breve', description: 'Novos modelos serão adicionados aqui.', overlay: label, action: 'Abrir categoria', href: appUrl(`pt/${category}/`), fallback: true });
 
     const slats = Math.max(1, Math.min(slides.length - 4, 3));
     const visible = 4 + slats;
@@ -108,7 +111,7 @@
     const host = document.querySelector('[data-squeeze-series]');
     if (!host) return;
     try {
-      const templates = await fetch(versioned('/data/templates.json')).then(response => {
+      const templates = await fetch(versioned(appUrl('data/templates.json'))).then(response => {
         if (!response.ok) throw Error('templates');
         return response.json();
       });

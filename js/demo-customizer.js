@@ -1,6 +1,7 @@
 /* Inline editing controls for a demo. They are never part of the delivered template. */
 (() => {
   const source = document.currentScript;
+  const appBase = source?.src ? new URL('../', source.src).href : new URL('./', location.href).href;
   const id = source?.dataset.catalogTemplate || 'modelo';
   const slug = source?.dataset.catalogModel || id;
   const category = source?.dataset.catalogCategory || 'outros';
@@ -169,7 +170,7 @@
   function mount() {
     ensureLiquidGlass(); style(); editableTextNodes(); buttonTextEditors(); applyLiquidButtons();
     const controls = document.createElement('div'); controls.className = 'catalog-controls';
-    const back = document.createElement('a'); back.className = 'catalog-back-link catalog-liquid-button'; back.href = '/'; back.textContent = '← Voltar aos templates';
+    const back = document.createElement('a'); back.className = 'catalog-back-link catalog-liquid-button'; back.href = appBase; back.textContent = '← Voltar aos templates';
     const visual = document.createElement('button'); visual.type = 'button'; visual.className = 'catalog-visual-button catalog-liquid-button'; visual.textContent = 'Personalizar visual'; visual.onclick = () => openEditor('visual', 'Personalizar visual');
     const textLock = document.createElement('button'); textLock.type = 'button'; textLock.className = 'catalog-lock-button catalog-liquid-button'; textLock.dataset.editLock = 'texts'; textLock.title = 'Bloquear ou desbloquear edição de textos'; textLock.onclick = () => { editMode.texts = !editMode.texts; updateEditMode(); };
     const buttonLock = document.createElement('button'); buttonLock.type = 'button'; buttonLock.className = 'catalog-lock-button catalog-liquid-button'; buttonLock.dataset.editLock = 'buttons'; buttonLock.title = 'Bloquear ou desbloquear edição dos botões'; buttonLock.onclick = () => { editMode.buttons = !editMode.buttons; updateEditMode(); };
