@@ -59,21 +59,18 @@
     });
   }
 
-  function addMarker(target, kind, label) {
-    if (!target) return;
-    const host = /^(A|BUTTON)$/.test(target.tagName) ? target.parentElement : target;
-    if (!host || host.querySelector(`:scope > .catalog-edit-icon[data-kind="${kind}"]`)) return;
-    if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
-    const button = document.createElement('button');
-    button.type = 'button'; button.className = 'catalog-edit-icon'; button.dataset.kind = kind; button.title = label; button.setAttribute('aria-label', label);
-    button.textContent = kind === 'colors' ? '◐' : kind === 'logo' ? '✦' : kind === 'hero' ? '▧' : '✎';
-    button.onclick = event => { event.preventDefault(); event.stopPropagation(); openEditor(kind, label); };
-    host.append(button);
+  function ensureLiquidGlass() {
+    if (document.getElementById('catalog-liquid-glass')) return;
+    document.body.insertAdjacentHTML('beforeend', '<svg id="catalog-liquid-glass" width="0" height="0" aria-hidden="true"><defs><filter id="catalog-glass-filter"><feTurbulence type="fractalNoise" baseFrequency=".05 .05" numOctaves="1" seed="1" result="noise"/><feGaussianBlur in="noise" stdDeviation="2" result="blur"/><feDisplacementMap in="SourceGraphic" in2="blur" scale="18" xChannelSelector="R" yChannelSelector="B"/></filter></defs></svg>');
   }
+  function applyLiquidButtons() {
+    document.querySelectorAll('a.btn,button:not(.navbar-toggler):not(.catalog-edit-icon)').forEach(button => button.classList.add('catalog-liquid-button'));
+  }
+
   function style() {
     const tag = document.createElement('style');
     tag.textContent = `.catalog-edit-icon{position:absolute!important;z-index:2147483645!important;right:9px!important;top:9px!important;width:28px!important;height:28px!important;padding:0!important;border:1px solid #fff!important;border-radius:50%!important;background:#111d!important;color:#fff!important;font:15px/1 system-ui!important;opacity:.82!important;box-shadow:0 2px 9px #0007!important;cursor:pointer!important}.catalog-edit-icon:hover,.catalog-edit-icon:focus{opacity:1!important;transform:scale(1.08)!important}.catalog-edit-popover{position:fixed;right:18px;bottom:18px;z-index:2147483646;width:min(330px,calc(100vw - 36px));background:#fff;color:#152033;border-radius:12px;box-shadow:0 16px 50px #0008;padding:16px;font:14px system-ui}.catalog-edit-popover h2{margin:0 0 12px;font-size:16px}.catalog-edit-popover label{display:grid;gap:5px;margin:10px 0;font-weight:700;font-size:12px}.catalog-edit-popover input,.catalog-edit-popover select{width:100%;padding:8px;border:1px solid #cbd2dc;border-radius:7px}.catalog-edit-popover .actions{display:flex;gap:8px;margin-top:14px}.catalog-edit-popover button{border:0;border-radius:7px;padding:9px 11px;background:#e0e7ff;color:#312e81;font-weight:700;cursor:pointer}.catalog-reset-icon{position:fixed;right:18px;bottom:18px;z-index:2147483645;border:0;border-radius:50%;width:34px;height:34px;background:#182033;color:#fff;box-shadow:0 3px 14px #0006;cursor:pointer}`;
-    tag.textContent += `.catalog-direct-text{cursor:text!important}.catalog-direct-text:focus{outline:2px solid #818cf8!important;outline-offset:4px!important;background:rgb(255 255 255 / .08)!important}.catalog-quote-link{position:fixed;left:50%;bottom:20px;z-index:2147483645;transform:translateX(-50%);border:0;background:transparent;color:#fff;font:600 14px system-ui;letter-spacing:.01em;text-decoration:underline;text-underline-offset:4px;cursor:pointer;text-shadow:0 2px 8px #000}.catalog-quote-link:hover,.catalog-quote-link:focus{color:#c7d2fe}`;
+    tag.textContent += `.catalog-direct-text{cursor:text!important}.catalog-direct-text:focus{outline:2px solid #818cf8!important;outline-offset:4px!important;background:rgb(255 255 255 / .08)!important}.catalog-liquid-button{position:relative!important;isolation:isolate!important;overflow:hidden!important;border:1px solid rgb(255 255 255 / .34)!important;border-radius:999px!important;background:linear-gradient(135deg,rgb(255 255 255 / .26),rgb(255 255 255 / .06))!important;color:inherit!important;box-shadow:0 0 6px rgb(0 0 0 / .03),0 2px 6px rgb(0 0 0 / .18),inset 3px 3px .5px -3px rgb(255 255 255 / .32),inset -3px -3px .5px -3px rgb(255 255 255 / .8),inset 0 0 8px rgb(255 255 255 / .08),0 0 12px rgb(255 255 255 / .12)!important;backdrop-filter:blur(12px) saturate(150%)!important;transition:transform .3s,filter .3s,box-shadow .3s!important}.catalog-liquid-button:hover{transform:scale(1.05)!important;filter:brightness(1.12)!important}.catalog-liquid-button:active{transform:scale(.98)!important;filter:brightness(.92)!important}.catalog-liquid-button:before{content:"";position:absolute;inset:1px;z-index:-1;border-radius:inherit;background:linear-gradient(125deg,rgb(255 255 255 / .28),transparent 42%,rgb(255 255 255 / .08));pointer-events:none}.catalog-quote-link{position:fixed!important;left:50%;bottom:20px;z-index:2147483645;transform:translateX(-50%);padding:13px 22px!important;color:#fff!important;font:600 14px system-ui;letter-spacing:.01em;text-decoration:none!important;white-space:nowrap}.catalog-quote-link:hover,.catalog-quote-link:focus{color:#fff!important;transform:translateX(-50%) scale(1.05)!important}.catalog-visual-button{position:fixed!important;left:18px;bottom:18px;z-index:2147483645;padding:11px 16px!important;color:#fff!important;font:600 13px system-ui;background:linear-gradient(135deg,rgb(30 41 59 / .9),rgb(15 23 42 / .72))!important}.catalog-reset-icon{bottom:72px!important}`;
     document.head.append(tag);
   }
   function saveField(field, value) { state[field] = value; apply(); }
@@ -83,19 +80,22 @@
     const popover = document.createElement('aside'); popover.className = 'catalog-edit-popover'; popover.innerHTML = `<h2>${label}</h2>`;
     const field = (title, name, type = 'text') => { const label = document.createElement('label'); label.textContent = title; const input = document.createElement('input'); input.type = type; input.value = state[name] || ''; input.oninput = () => saveField(name, input.value); label.append(input); popover.append(label); };
     if (kind === 'name') { field('Nome exibido', 'businessName'); field('Título principal', 'heroText'); }
-    if (kind === 'colors') { field('Cor principal', 'primaryColor', 'color'); field('Cor secundária', 'secondaryColor', 'color'); field('Cor de destaque', 'accentColor', 'color'); }
-    if (kind === 'logo' || kind === 'hero') { const label = document.createElement('label'); label.textContent = kind === 'logo' ? 'Enviar logo' : 'Enviar imagem de capa'; const input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; label.append(input); popover.append(label); upload(kind === 'logo' ? 'logo' : 'heroImage', input); }
-    if (kind === 'style') { const font = document.createElement('label'); font.textContent = 'Fonte'; font.innerHTML += '<select><option value="system-ui">Sistema</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Serifada</option></select>'; const select = font.querySelector('select'); select.value = state.font; select.onchange = () => saveField('font', select.value); popover.append(font); }
-    const actions = document.createElement('div'); actions.className = 'actions'; actions.innerHTML = '<button type="button">Fechar</button>'; actions.firstChild.onclick = () => popover.remove(); popover.append(actions); document.body.append(popover);
+    if (kind === 'colors' || kind === 'visual') { field('Cor principal', 'primaryColor', 'color'); field('Cor secundária', 'secondaryColor', 'color'); field('Cor de destaque', 'accentColor', 'color'); }
+    const imageField = (title, name) => { const label = document.createElement('label'); label.textContent = title; const input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; label.append(input); popover.append(label); upload(name, input); };
+    if (kind === 'logo') imageField('Enviar logo', 'logo');
+    if (kind === 'hero') imageField('Enviar imagem de capa', 'heroImage');
+    if (kind === 'visual') { imageField('Enviar logo', 'logo'); imageField('Enviar imagem de capa', 'heroImage'); }
+    if (kind === 'style' || kind === 'visual') { const font = document.createElement('label'); font.textContent = 'Fonte'; font.innerHTML += '<select><option value="system-ui">Sistema</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Serifada</option></select>'; const select = font.querySelector('select'); select.value = state.font; select.onchange = () => saveField('font', select.value); popover.append(font); }
+    const actions = document.createElement('div'); actions.className = 'actions'; actions.innerHTML = '<button type="button">Fechar</button>'; actions.firstChild.classList.add('catalog-liquid-button'); actions.firstChild.onclick = () => popover.remove(); popover.append(actions); document.body.append(popover);
   }
   function mount() {
+    ensureLiquidGlass();
     style();
-    addMarker(document.querySelector('.navbar-brand'), 'logo', 'Editar logo');
-    addMarker(document.querySelector('header.masthead,.masthead,.hero,.page-header'), 'hero', 'Editar imagem de capa');
-    addMarker(document.querySelector('.navbar,.navbar-brand,header'), 'colors', 'Editar cores globais');
     makeTextsEditable();
-    const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'catalog-reset-icon'; reset.title = 'Resetar personalização'; reset.textContent = '↺'; reset.onclick = async () => { if (!confirm('Resetar apenas este modelo?')) return; try { localStorage.removeItem(key); } catch {} await imageDelete('logo'); await imageDelete('heroImage'); state = { ...defaults }; apply(); location.reload(); }; document.body.append(reset);
-    const quote = document.createElement('button'); quote.type = 'button'; quote.className = 'catalog-quote-link'; quote.dataset.demoQuote = ''; quote.title = 'Solicitar orçamento'; quote.textContent = 'Orçamento deste template'; document.body.append(quote);
+    applyLiquidButtons();
+    const visual = document.createElement('button'); visual.type = 'button'; visual.className = 'catalog-visual-button catalog-liquid-button'; visual.textContent = 'Personalizar visual'; visual.onclick = () => openEditor('visual', 'Personalizar visual'); document.body.append(visual);
+    const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'catalog-reset-icon catalog-liquid-button'; reset.title = 'Resetar personalização'; reset.textContent = '↺'; reset.onclick = async () => { if (!confirm('Resetar apenas este modelo?')) return; try { localStorage.removeItem(key); } catch {} await imageDelete('logo'); await imageDelete('heroImage'); state = { ...defaults }; apply(); location.reload(); }; document.body.append(reset);
+    const quote = document.createElement('button'); quote.type = 'button'; quote.className = 'catalog-quote-link catalog-liquid-button'; quote.dataset.demoQuote = ''; quote.title = 'Solicitar orçamento'; quote.textContent = 'Orçamento deste template'; document.body.append(quote);
   }
   async function hydrate() { state.logo = await imageGet('logo'); state.heroImage = await imageGet('heroImage'); apply(); }
   document.addEventListener('DOMContentLoaded', () => { mount(); hydrate(); });
