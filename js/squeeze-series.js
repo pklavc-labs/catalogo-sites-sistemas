@@ -47,6 +47,11 @@
       element.style.width = width;
       element.style.borderRadius = `min(var(--sq-radius), calc(${width} / 2))`;
     });
+    const fitLivePreview = () => requestAnimationFrame(() => slots.forEach(({ element }) => {
+      const frame = element.querySelector('.sq-live-preview');
+      if (!frame) return;
+      frame.style.transform = `scale(${element.clientWidth / 1440})`;
+    }));
     const paintPanel = () => {
       const slide = slides[open];
       panel.innerHTML = `<div class="sq-panel-item shown"><p class="sq-panel-copy"><strong>${escapeHtml(slide.name)}</strong> <span>${escapeHtml(slide.description)}</span></p><a class="sq-action" href="${slide.href}">${escapeHtml(slide.action)}<svg width="6" height="9" viewBox="0 0 6 9" fill="none" aria-hidden="true"><path d="M1.2 1 4.7 4.5 1.2 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>`;
@@ -58,16 +63,17 @@
       element.tabIndex = column === 0 ? 0 : -1;
       element.setAttribute('aria-label', slide.name);
       element.innerHTML = slide.fallback
-        ? `<span class="sq-fallback"></span><span class="sq-overlay"><span>${escapeHtml(slide.overlay)}</span></span>`
+        ? `<span class="sq-fallback"></span>`
         : column === 0
-          ? `<iframe class="sq-live-preview" src="${versioned(`${slide.href}?catalogPreview=1`)}" title="Visualização ao vivo de ${escapeHtml(slide.name)}" loading="lazy" tabindex="-1"></iframe><span class="sq-overlay"><span>Ao vivo · ${escapeHtml(slide.overlay)}</span></span>`
-          : `<img src="${previewOf(slide)}" alt="Preview de ${escapeHtml(slide.name)}"><span class="sq-overlay"><span>${escapeHtml(slide.overlay)}</span></span>`;
+          ? `<iframe class="sq-live-preview" src="${versioned(`${slide.href}?catalogPreview=1`)}" title="Visualização de ${escapeHtml(slide.name)}" loading="lazy" scrolling="no" tabindex="-1"></iframe>`
+          : `<img src="${previewOf(slide)}" alt="Preview de ${escapeHtml(slide.name)}">`;
     };
     const select = next => {
       open = wrap(next);
       hover = -1;
       slots.forEach(paintSlot);
       setWidths();
+      fitLivePreview();
       paintPanel();
     };
 
@@ -79,11 +85,12 @@
       element.style.marginLeft = column === 0 ? '0' : column < 4 ? 'var(--sq-gap)' : 'var(--sq-slat-gap)';
       const slot = { element, column };
       slots.push(slot);
-      element.addEventListener('mouseenter', () => { hover = column; setWidths(); });
-      element.addEventListener('mouseleave', () => { hover = -1; setWidths(); });
+      element.addEventListener('mouseenter', () => { hover = column; setWidths(); fitLivePreview(); });
+      element.addEventListener('mouseleave', () => { hover = -1; setWidths(); fitLivePreview(); });
       element.addEventListener('click', () => { if (column > 0) select(open + column); });
       strip.append(element);
     }
+    new ResizeObserver(fitLivePreview).observe(instance);
     instance.querySelector('.sq-controls button:first-child').onclick = () => select(open - 1);
     instance.querySelector('.sq-controls button:last-child').onclick = () => select(open + 1);
     instance.addEventListener('keydown', event => {
