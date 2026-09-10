@@ -1,0 +1,6 @@
+{
+  "provider": "mock",
+  "cloudflare": { "endpoint": "", "binding": "" },
+  "api": { "endpoint": "", "keyEnvironmentVariable": "" },
+  "note": "Não coloque chaves de API neste arquivo público. Configure o provedor no servidor ou Worker."
+}

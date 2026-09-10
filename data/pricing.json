@@ -1,70 +1,21 @@
 {
   "currency": "BRL",
-  "base": {
-    "ecommerce": 2490,
-    "servicos": 1890,
-    "portfolio": 1490,
-    "blog": 1790,
-    "sistemas": 3490,
-    "landing-pages": 1290,
-    "default": 1590
-  },
+  "base": { "ecommerce": 2490, "servicos": 1890, "portfolio": 1490, "blog": 1790, "sistemas": 3490, "landing-pages": 1290, "default": 1590 },
   "extras": {
-    "personalizacao": {
-      "label": "Personalização visual",
-      "price": 550
-    },
-    "formulario": {
-      "label": "Formulários",
-      "price": 350
-    },
-    "whatsapp": {
-      "label": "Integração com WhatsApp",
-      "price": 250
-    },
-    "email": {
-      "label": "Integração com e-mail",
-      "price": 300
-    },
-    "admin": {
-      "label": "Painel administrativo",
-      "price": 1800
-    },
-    "banco": {
-      "label": "Banco de dados",
-      "price": 1400
-    },
-    "autenticacao": {
-      "label": "Autenticação",
-      "price": 950
-    },
-    "integracoes": {
-      "label": "Integrações externas",
-      "price": 900
-    },
-    "dominio": {
-      "label": "Domínio",
-      "price": 120
-    },
-    "hospedagem": {
-      "label": "Hospedagem (1º ano)",
-      "price": 360
-    },
-    "manutencao": {
-      "label": "Manutenção mensal",
-      "price": 250
-    },
-    "seo": {
-      "label": "SEO essencial",
-      "price": 650
-    },
-    "analytics": {
-      "label": "Analytics",
-      "price": 280
-    },
-    "adicionais": {
-      "label": "Funcionalidades adicionais",
-      "price": 500
-    }
+    "personalizacao": { "label": "Personalização visual", "price": 550, "billing": "once", "description": "Identidade, cores e conteúdo inicial" },
+    "formulario": { "label": "Formulários inteligentes", "price": 350, "billing": "once", "description": "Contato com validação e destino configurado" },
+    "whatsapp": { "label": "Integração com WhatsApp", "price": 250, "billing": "once", "description": "Botões e mensagens pré-configuradas" },
+    "email": { "label": "Integração com e-mail", "price": 300, "billing": "once", "description": "Envio e recebimento configurados" },
+    "admin": { "label": "Painel administrativo", "price": 1800, "billing": "once", "description": "Gestão de conteúdo e dados" },
+    "banco": { "label": "Banco de dados", "price": 1400, "billing": "once", "description": "Estrutura e conexão inicial" },
+    "autenticacao": { "label": "Área com login", "price": 950, "billing": "once", "description": "Autenticação para clientes ou equipe" },
+    "integracoes": { "label": "Integração externa", "price": 900, "billing": "once", "description": "API, ERP ou serviço de terceiros" },
+    "sem-anuncios": { "label": "Remoção de anúncios", "price": 180, "billing": "once", "description": "Retirada de banners e referências indesejadas" },
+    "seo": { "label": "SEO essencial", "price": 650, "billing": "once", "description": "Metadados e estrutura inicial" },
+    "analytics": { "label": "Analytics", "price": 280, "billing": "once", "description": "Medição básica de acessos" },
+    "adicionais": { "label": "Funcionalidade adicional", "price": 500, "billing": "once", "description": "Reserva para uma necessidade específica" },
+    "hospedagem": { "label": "Hospedagem gerenciada", "price": 39, "billing": "monthly", "description": "Hospedagem, SSL e monitoramento básico" },
+    "alteracoes-mensais": { "label": "3 alterações mensais", "price": 149, "billing": "monthly", "description": "Pequenos ajustes de texto, imagem ou seção" },
+    "correcao-bugs": { "label": "Correção de bugs", "price": 99, "billing": "monthly", "description": "Correções de falhas dentro do escopo entregue" }
   }
 }
