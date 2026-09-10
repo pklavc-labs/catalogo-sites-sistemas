@@ -22,11 +22,16 @@
     const root = document.documentElement;
     root.style.setProperty('--primary-color', state.primaryColor); root.style.setProperty('--secondary-color', state.secondaryColor); root.style.setProperty('--accent-color', state.accentColor); root.style.setProperty('--bs-primary', state.primaryColor); root.style.setProperty('--bs-secondary', state.secondaryColor); root.style.fontFamily = state.font;
     Object.entries(state.texts || {}).forEach(([textId, value]) => document.querySelectorAll(`[data-catalog-text-id="${textId}"]`).forEach(element => { element.textContent = value; }));
-    document.querySelectorAll('.btn-primary,.bg-primary,.text-primary').forEach(element => { if (element.classList.contains('text-primary')) element.style.setProperty('color', state.primaryColor, 'important'); else element.style.setProperty('background-color', state.primaryColor, 'important'); });
+    document.querySelectorAll('.btn-primary,.bg-primary,.text-primary').forEach(element => {
+      if (element.classList.contains('text-primary')) element.style.setProperty('color', state.primaryColor, 'important');
+      else if (element.classList.contains('catalog-liquid-button')) element.style.removeProperty('background-color');
+      else element.style.setProperty('background-color', state.primaryColor, 'important');
+    });
     document.querySelectorAll('.btn,.btn-primary').forEach(element => { element.style.borderRadius = state.buttonStyle === 'pill' ? '999px' : state.buttonStyle === 'square' ? '0' : '8px'; });
     if (state.logo) { const mark = document.querySelector('[data-catalog-logo]') || (() => { const image = document.createElement('img'); image.dataset.catalogLogo = ''; image.alt = state.businessName; image.style.cssText = 'height:32px;max-width:150px;object-fit:contain;vertical-align:middle;margin-right:8px'; document.querySelector('.navbar-brand')?.prepend(image); return image; })(); if (mark) mark.src = state.logo; }
     if (state.heroImage) { const hero = document.querySelector('header.masthead,.masthead,.hero,.page-header'); if (hero) { hero.style.backgroundImage = `linear-gradient(#0007,#0007),url("${state.heroImage}")`; hero.style.backgroundSize = 'cover'; hero.style.backgroundPosition = 'center'; } }
     persist();
+    requestAnimationFrame(refreshLiquidContrast);
   }
 
   function setText(textId, value) { state.texts[textId] = value; persist(); }
@@ -67,17 +72,86 @@
     if (buttonControl) buttonControl.innerHTML = `${lockIcon(editMode.buttons)}<span>Botões</span>`;
   }
   function ensureLiquidGlass() { if (!document.getElementById('catalog-liquid-glass')) document.body.insertAdjacentHTML('beforeend', '<svg id="catalog-liquid-glass" width="0" height="0" aria-hidden="true"><defs><filter id="catalog-glass-filter"><feTurbulence type="fractalNoise" baseFrequency=".05 .05" numOctaves="1" seed="1" result="noise"/><feGaussianBlur in="noise" stdDeviation="2" result="blur"/><feDisplacementMap in="SourceGraphic" in2="blur" scale="18" xChannelSelector="R" yChannelSelector="B"/></filter></defs></svg>'); }
-  function applyLiquidButtons() {
-    const luminance = color => { const rgb = color.match(/\d+(?:\.\d+)?/g)?.slice(0, 3).map(Number); return rgb ? (rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722) / 255 : 0; };
-    document.querySelectorAll('a.btn,button:not(.navbar-toggler)').forEach(button => {
-      const style = getComputedStyle(button); const light = luminance(style.backgroundColor) > .58;
-      button.style.setProperty('--catalog-liquid-text', light ? '#111827' : '#ffffff'); button.classList.add('catalog-liquid-button');
+  function colorChannels(color) {
+    const values = color.match(/[\d.]+/g)?.map(Number) || [];
+    if (values.length < 3) return null;
+    return { r: values[0], g: values[1], b: values[2], a: values.length > 3 ? values[3] : 1 };
+  }
+  function backdropLuminance(button) {
+    const rect = button.getBoundingClientRect();
+    if (!rect.width || !rect.height) return 0;
+    const previous = button.style.visibility;
+    button.style.visibility = 'hidden';
+    const target = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    button.style.visibility = previous;
+    const layers = [];
+    for (let node = target; node && node instanceof Element; node = node.parentElement) {
+      const parsed = colorChannels(getComputedStyle(node).backgroundColor);
+      if (parsed && parsed.a > 0) layers.push(parsed);
+    }
+    let result = { r: 255, g: 255, b: 255 };
+    layers.reverse().forEach(layer => {
+      result = {
+        r: layer.r * layer.a + result.r * (1 - layer.a),
+        g: layer.g * layer.a + result.g * (1 - layer.a),
+        b: layer.b * layer.a + result.b * (1 - layer.a)
+      };
     });
+    return (result.r * .2126 + result.g * .7152 + result.b * .0722) / 255;
+  }
+  const imageLuminanceCache = new Map();
+  function backdropImageUrl(button) {
+    const rect = button.getBoundingClientRect();
+    if (!rect.width || !rect.height) return '';
+    const previous = button.style.visibility;
+    button.style.visibility = 'hidden';
+    const target = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    button.style.visibility = previous;
+    for (let node = target; node && node instanceof Element; node = node.parentElement) {
+      const match = getComputedStyle(node).backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+      if (match) return new URL(match[1], document.baseURI).href;
+    }
+    return '';
+  }
+  function imageLuminance(url) {
+    if (!imageLuminanceCache.has(url)) imageLuminanceCache.set(url, new Promise(resolve => {
+      const image = new Image();
+      image.onload = () => {
+        try {
+          const canvas = document.createElement('canvas'); canvas.width = 24; canvas.height = 24;
+          const context = canvas.getContext('2d', { willReadFrequently: true });
+          context.drawImage(image, 0, 0, 24, 24);
+          const pixels = context.getImageData(0, 0, 24, 24).data;
+          let light = 0, alpha = 0;
+          for (let index = 0; index < pixels.length; index += 4) {
+            const weight = pixels[index + 3] / 255;
+            light += (pixels[index] * .2126 + pixels[index + 1] * .7152 + pixels[index + 2] * .0722) * weight;
+            alpha += weight;
+          }
+          resolve(alpha ? light / alpha / 255 : null);
+        } catch { resolve(null); }
+      };
+      image.onerror = () => resolve(null);
+      image.src = url;
+    }));
+    return imageLuminanceCache.get(url);
+  }
+  function refreshLiquidContrast() {
+    document.querySelectorAll('.catalog-liquid-button').forEach(button => {
+      button.style.setProperty('--catalog-liquid-text', backdropLuminance(button) > .56 ? '#111827' : '#ffffff');
+      const imageUrl = backdropImageUrl(button);
+      if (imageUrl) imageLuminance(imageUrl).then(value => {
+        if (value !== null && button.isConnected) button.style.setProperty('--catalog-liquid-text', value > .56 ? '#111827' : '#ffffff');
+      });
+    });
+  }
+  function applyLiquidButtons() {
+    document.querySelectorAll('a.btn,button:not(.navbar-toggler)').forEach(button => button.classList.add('catalog-liquid-button'));
+    requestAnimationFrame(refreshLiquidContrast);
   }
   function style() {
     const tag = document.createElement('style');
-    tag.textContent = `.catalog-direct-text{cursor:text!important;outline-offset:3px}.catalog-direct-text:hover{outline:1px dashed rgb(129 140 248 / .72)}.catalog-direct-text:focus{outline:2px solid #818cf8!important;background:rgb(255 255 255 / .1)!important}.catalog-text-locked{cursor:default!important}.catalog-button-unlocked{outline:2px dashed #7dd3fc!important;outline-offset:4px}.catalog-liquid-button{position:relative!important;isolation:isolate!important;overflow:hidden!important;border:1px solid rgb(255 255 255 / .34)!important;border-radius:999px!important;background:linear-gradient(135deg,rgb(255 255 255 / .26),rgb(255 255 255 / .06))!important;color:var(--catalog-liquid-text,#fff)!important;text-shadow:0 1px 7px rgb(0 0 0 / .35)!important;box-shadow:0 0 6px rgb(0 0 0 / .03),0 2px 6px rgb(0 0 0 / .18),inset 3px 3px .5px -3px rgb(255 255 255 / .32),inset -3px -3px .5px -3px rgb(255 255 255 / .8),inset 0 0 8px rgb(255 255 255 / .08),0 0 12px rgb(255 255 255 / .12)!important;backdrop-filter:blur(12px) saturate(150%)!important;transition:transform .3s,filter .3s,box-shadow .3s!important}.catalog-liquid-button:hover{transform:scale(1.05)!important;filter:brightness(1.12)!important}.catalog-liquid-button:active{transform:scale(.98)!important;filter:brightness(.92)!important}.catalog-liquid-button:before{content:"";position:absolute;inset:1px;z-index:-1;border-radius:inherit;background:linear-gradient(125deg,rgb(255 255 255 / .28),transparent 42%,rgb(255 255 255 / .08));pointer-events:none}.catalog-controls{position:fixed;left:18px;bottom:18px;z-index:2147483645;display:flex;gap:9px;align-items:center;flex-wrap:wrap}.catalog-visual-button,.catalog-reset-button,.catalog-lock-button,.catalog-quote-link,.catalog-back-link{padding:13px 22px!important;color:#fff!important;font:600 14px system-ui!important;letter-spacing:.01em;white-space:nowrap}.catalog-lock-button{display:inline-flex!important;align-items:center!important;gap:7px;padding-inline:12px!important}.catalog-lock-button svg{width:17px;height:17px}.catalog-back-link{text-decoration:none!important}.catalog-quote-link{position:fixed!important;left:50%;bottom:20px;z-index:2147483645;transform:translateX(-50%)}.catalog-quote-link:hover,.catalog-quote-link:focus{color:#fff!important;transform:translateX(-50%) scale(1.05)!important}.catalog-edit-popover{position:fixed;left:18px;bottom:78px;z-index:2147483646;width:min(360px,calc(100vw - 36px));max-height:calc(100dvh - 102px);overflow-x:hidden!important;overflow-y:auto!important;scrollbar-width:none;border:1px solid rgb(255 255 255 / .28);border-radius:20px;background:linear-gradient(135deg,rgb(18 28 49 / .95),rgb(7 12 25 / .93));box-shadow:0 20px 55px #000a;color:#f8fafc;padding:18px;font:14px system-ui;backdrop-filter:blur(16px)}.catalog-edit-popover::-webkit-scrollbar,.cdq-box::-webkit-scrollbar,.cai-messages::-webkit-scrollbar{display:none}.catalog-edit-popover h2{margin:0 42px 13px 0;font-size:17px}.catalog-edit-popover label{display:grid;gap:6px;margin:11px 0;color:#dbeafe;font-weight:700;font-size:12px}.catalog-edit-popover input,.catalog-edit-popover select{width:100%;box-sizing:border-box;border:1px solid rgb(255 255 255 / .24);border-radius:12px;background:rgb(255 255 255 / .09);color:#fff;padding:10px;outline:none}.catalog-edit-popover input[type="color"]{height:42px;padding:4px}.catalog-edit-popover option{background:#16213a}.catalog-edit-popover textarea{width:100%;box-sizing:border-box;border:1px solid rgb(255 255 255 / .24);border-radius:12px;background:rgb(255 255 255 / .09);color:#fff;padding:10px;resize:vertical}.catalog-popover-close-row{position:sticky;top:-18px;z-index:2;display:flex;justify-content:flex-end;padding:2px 0 6px;background:linear-gradient(135deg,rgb(18 28 49 / .98),rgb(7 12 25 / .98))}.catalog-popover-close{width:34px;height:34px;padding:0!important;font-size:20px!important}@media(max-width:520px){.catalog-controls{left:10px;bottom:10px;gap:6px}.catalog-visual-button,.catalog-reset-button,.catalog-lock-button{padding:11px 12px!important;font-size:12px!important}.catalog-edit-popover{left:10px;bottom:68px;width:calc(100vw - 20px)}}`;
-    tag.textContent += `.catalog-controls{bottom:78px!important;max-width:calc(100vw - 36px)!important}.catalog-edit-popover{bottom:136px!important}@media(max-width:520px){.catalog-controls{bottom:70px!important}.catalog-edit-popover{bottom:128px!important}}`;
+    tag.textContent = `.catalog-direct-text{cursor:text!important;outline-offset:3px}.catalog-direct-text:hover{outline:1px dashed rgb(129 140 248 / .72)}.catalog-direct-text:focus{outline:2px solid #818cf8!important;background:rgb(255 255 255 / .1)!important}.catalog-text-locked{cursor:default!important}.catalog-button-unlocked{outline:2px dashed #7dd3fc!important;outline-offset:4px}.catalog-liquid-button{position:relative!important;isolation:isolate!important;overflow:hidden!important;border:1px solid rgb(255 255 255 / .34)!important;border-radius:999px!important;background:linear-gradient(135deg,rgb(255 255 255 / .26),rgb(255 255 255 / .06))!important;color:var(--catalog-liquid-text,#fff)!important;text-shadow:0 1px 7px rgb(0 0 0 / .35)!important;box-shadow:0 0 6px rgb(0 0 0 / .03),0 2px 6px rgb(0 0 0 / .18),inset 3px 3px .5px -3px rgb(255 255 255 / .32),inset -3px -3px .5px -3px rgb(255 255 255 / .8),inset 0 0 8px rgb(255 255 255 / .08),0 0 12px rgb(255 255 255 / .12)!important;backdrop-filter:blur(12px) saturate(150%)!important;transition:transform .3s,filter .3s,box-shadow .3s!important}.catalog-liquid-button:hover{transform:scale(1.05)!important;filter:brightness(1.12)!important}.catalog-liquid-button:active{transform:scale(.98)!important;filter:brightness(.92)!important}.catalog-liquid-button:before{content:"";position:absolute;inset:1px;z-index:-1;border-radius:inherit;background:linear-gradient(125deg,rgb(255 255 255 / .28),transparent 42%,rgb(255 255 255 / .08));pointer-events:none}.catalog-controls{position:fixed!important;left:50%!important;bottom:18px!important;z-index:2147483645!important;display:flex!important;gap:9px!important;align-items:center!important;justify-content:center!important;flex-wrap:nowrap!important;width:max-content!important;max-width:calc(100vw - 24px)!important;transform:translateX(-50%)!important}.catalog-visual-button,.catalog-reset-button,.catalog-lock-button,.catalog-quote-link,.catalog-back-link{padding:13px clamp(12px,1.45vw,22px)!important;color:var(--catalog-liquid-text,#fff)!important;font:600 clamp(12px,1vw,14px) system-ui!important;letter-spacing:.01em;white-space:nowrap}.catalog-lock-button{display:inline-flex!important;align-items:center!important;gap:7px;padding-inline:12px!important}.catalog-lock-button svg{width:17px;height:17px}.catalog-back-link{text-decoration:none!important}.catalog-quote-link{display:inline-flex!important;align-items:center!important}.catalog-edit-popover{position:fixed;left:18px;bottom:88px;z-index:2147483646;width:min(360px,calc(100vw - 36px));max-height:calc(100dvh - 112px);overflow-x:hidden!important;overflow-y:auto!important;scrollbar-width:none;border:1px solid rgb(255 255 255 / .28);border-radius:20px;background:linear-gradient(135deg,rgb(18 28 49 / .95),rgb(7 12 25 / .93));box-shadow:0 20px 55px #000a;color:#f8fafc;padding:18px;font:14px system-ui;backdrop-filter:blur(16px)}.catalog-edit-popover::-webkit-scrollbar,.cdq-box::-webkit-scrollbar,.cai-messages::-webkit-scrollbar{display:none}.catalog-edit-popover h2{margin:0 42px 13px 0;font-size:17px}.catalog-edit-popover label{display:grid;gap:6px;margin:11px 0;color:#dbeafe;font-weight:700;font-size:12px}.catalog-edit-popover input,.catalog-edit-popover select{width:100%;box-sizing:border-box;border:1px solid rgb(255 255 255 / .24);border-radius:12px;background:rgb(255 255 255 / .09);color:#fff;padding:10px;outline:none}.catalog-edit-popover input[type="color"]{height:42px;padding:4px}.catalog-edit-popover option{background:#16213a}.catalog-edit-popover textarea{width:100%;box-sizing:border-box;border:1px solid rgb(255 255 255 / .24);border-radius:12px;background:rgb(255 255 255 / .09);color:#fff;padding:10px;resize:vertical}.catalog-popover-close-row{position:sticky;top:-18px;z-index:2;display:flex;justify-content:flex-end;padding:2px 0 6px;background:linear-gradient(135deg,rgb(18 28 49 / .98),rgb(7 12 25 / .98))}.catalog-popover-close{width:34px;height:34px;padding:0!important;font-size:20px!important}@media(max-width:760px){.catalog-controls{bottom:10px!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:calc(100vw - 20px)!important;gap:6px!important}.catalog-controls>*{justify-content:center!important;min-width:0!important;padding:10px 7px!important;font-size:11px!important}.catalog-back-link,.catalog-quote-link{grid-column:span 3}.catalog-edit-popover{left:10px;bottom:126px;width:calc(100vw - 20px);max-height:calc(100dvh - 146px)}}`;
     document.head.append(tag);
   }
   function saveField(field, value) { state[field] = value; apply(); }
@@ -90,7 +164,7 @@
     const field = (title, name, type = 'text') => { const item = document.createElement('label'); item.textContent = title; const input = document.createElement('input'); input.type = type; input.value = state[name] || ''; input.oninput = () => saveField(name, input.value); item.append(input); popover.append(item); };
     const imageField = (title, name) => { const item = document.createElement('label'); item.textContent = title; const input = document.createElement('input'); input.type = 'file'; input.accept = 'image/*'; item.append(input); popover.append(item); upload(name, input); };
     if (kind === 'visual') { field('Cor principal', 'primaryColor', 'color'); field('Cor secundária', 'secondaryColor', 'color'); field('Cor de destaque', 'accentColor', 'color'); imageField('Enviar logo', 'logo'); imageField('Enviar imagem de capa', 'heroImage'); const font = document.createElement('label'); font.textContent = 'Fonte'; font.innerHTML += '<select><option value="system-ui">Sistema</option><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Serifada</option></select>'; const select = font.querySelector('select'); select.value = state.font; select.onchange = () => saveField('font', select.value); popover.append(font); const shape = document.createElement('label'); shape.textContent = 'Formato dos botões'; shape.innerHTML += '<select><option value="rounded">Arredondado</option><option value="pill">Pílula</option><option value="square">Reto</option></select>'; const shapeSelect = shape.querySelector('select'); shapeSelect.value = state.buttonStyle; shapeSelect.onchange = () => saveField('buttonStyle', shapeSelect.value); popover.append(shape); }
-    extra?.(popover); document.body.append(popover);
+    extra?.(popover); document.body.append(popover); requestAnimationFrame(refreshLiquidContrast);
   }
   function mount() {
     ensureLiquidGlass(); style(); editableTextNodes(); buttonTextEditors(); applyLiquidButtons();
@@ -100,8 +174,11 @@
     const textLock = document.createElement('button'); textLock.type = 'button'; textLock.className = 'catalog-lock-button catalog-liquid-button'; textLock.dataset.editLock = 'texts'; textLock.title = 'Bloquear ou desbloquear edição de textos'; textLock.onclick = () => { editMode.texts = !editMode.texts; updateEditMode(); };
     const buttonLock = document.createElement('button'); buttonLock.type = 'button'; buttonLock.className = 'catalog-lock-button catalog-liquid-button'; buttonLock.dataset.editLock = 'buttons'; buttonLock.title = 'Bloquear ou desbloquear edição dos botões'; buttonLock.onclick = () => { editMode.buttons = !editMode.buttons; updateEditMode(); };
     const reset = document.createElement('button'); reset.type = 'button'; reset.className = 'catalog-reset-button catalog-liquid-button'; reset.textContent = '↺ Resetar'; reset.onclick = async () => { if (!confirm('Resetar apenas este modelo?')) return; try { localStorage.removeItem(key); } catch {} await imageDelete('logo'); await imageDelete('heroImage'); state = { ...defaults }; apply(); location.reload(); };
-    controls.append(back, visual, textLock, buttonLock, reset); document.body.append(controls); updateEditMode();
     const quote = document.createElement('button'); quote.type = 'button'; quote.className = 'catalog-quote-link catalog-liquid-button'; quote.dataset.demoQuote = ''; quote.title = 'Solicitar orçamento'; quote.textContent = 'Orçamento deste template'; document.body.append(quote);
+    controls.append(back, visual, textLock, buttonLock, reset, quote); document.body.append(controls); updateEditMode();
+    requestAnimationFrame(refreshLiquidContrast);
+    window.addEventListener('resize', refreshLiquidContrast, { passive: true });
+    window.addEventListener('scroll', refreshLiquidContrast, { passive: true });
   }
   async function hydrate() { state.logo = await imageGet('logo'); state.heroImage = await imageGet('heroImage'); apply(); }
   document.addEventListener('DOMContentLoaded', () => { if (!previewMode) mount(); hydrate(); });
