@@ -1,5 +1,7 @@
 /* DOM implementation of the supplied SqueezeCarousel component for static hosting. */
 (() => {
+  const buildVersion = new URL(document.currentScript.src).searchParams.get('v') || '';
+  const versioned = url => buildVersion ? `${url}${url.includes('?') ? '&' : '?'}v=${buildVersion}` : url;
   const layoutFix = document.createElement('style');
   layoutFix.textContent = '.sq-panel,.sq-panel-item{width:100%;min-width:0}.sq-panel-copy{min-width:0}';
   document.head.append(layoutFix);
@@ -15,7 +17,7 @@
   const SQUEEZED = [-0.12, 0.59, 0.28, 0.13];
   const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' }[char]));
   const pathOf = item => `/pt/${item.category}/${item.slug}/`;
-  const previewOf = item => `${pathOf(item)}${item.preview}`;
+  const previewOf = item => versioned(`${pathOf(item)}${item.preview}`);
 
   function createCarousel([category, label], templates) {
     const slides = templates.map(template => ({ ...template, overlay: label, action: 'Visualizar demo', href: `${pathOf(template)}demo/` }));
@@ -31,7 +33,7 @@
     const instance = document.createElement('section');
     instance.className = 'sq-instance';
     instance.setAttribute('aria-label', label);
-    instance.innerHTML = `<div class="sq-controls"><button type="button" aria-label="Anterior">←</button><button type="button" aria-label="Próximo">→</button></div><div class="sq-window"><div class="sq-strip" role="tablist" aria-label="${escapeHtml(label)}"></div></div><div class="sq-panel" role="tabpanel" aria-live="polite"></div>`;
+    instance.innerHTML = `<header class="sq-heading"><h2>${escapeHtml(label)}</h2><div class="sq-controls"><button type="button" aria-label="Modelo anterior"><span>←</span></button><button type="button" aria-label="Próximo modelo"><span>→</span></button></div></header><div class="sq-window"><div class="sq-strip" role="tablist" aria-label="${escapeHtml(label)}"></div></div><div class="sq-panel" role="tabpanel" aria-live="polite"></div>`;
     const strip = instance.querySelector('.sq-strip');
     const panel = instance.querySelector('.sq-panel');
 
@@ -57,7 +59,9 @@
       element.setAttribute('aria-label', slide.name);
       element.innerHTML = slide.fallback
         ? `<span class="sq-fallback"></span><span class="sq-overlay"><span>${escapeHtml(slide.overlay)}</span></span>`
-        : `<img src="${previewOf(slide)}" alt="Preview de ${escapeHtml(slide.name)}"><span class="sq-overlay"><span>${escapeHtml(slide.overlay)}</span></span>`;
+        : column === 0
+          ? `<iframe class="sq-live-preview" src="${versioned(`${slide.href}?catalogPreview=1`)}" title="Visualização ao vivo de ${escapeHtml(slide.name)}" loading="lazy" tabindex="-1"></iframe><span class="sq-overlay"><span>Ao vivo · ${escapeHtml(slide.overlay)}</span></span>`
+          : `<img src="${previewOf(slide)}" alt="Preview de ${escapeHtml(slide.name)}"><span class="sq-overlay"><span>${escapeHtml(slide.overlay)}</span></span>`;
     };
     const select = next => {
       open = wrap(next);
@@ -94,7 +98,7 @@
     const host = document.querySelector('[data-squeeze-series]');
     if (!host) return;
     try {
-      const templates = await fetch('/data/templates.json').then(response => {
+      const templates = await fetch(versioned('/data/templates.json')).then(response => {
         if (!response.ok) throw Error('templates');
         return response.json();
       });

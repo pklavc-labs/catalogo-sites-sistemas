@@ -1,0 +1,6 @@
+#!/bin/sh
+node scripts/update-cache-hashes.mjs || exit 1
+git add -- data/cache-hashes.json
+git diff --name-only -- '*.html' | while IFS= read -r file; do
+  [ -n "$file" ] && git add -- "$file"
+done
