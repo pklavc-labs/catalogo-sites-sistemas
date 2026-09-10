@@ -1,6 +1,6 @@
 {
-  "release": "0e67e40cf2f2",
-  "generatedAt": "2026-09-10T03:30:29.991Z",
+  "release": "742700852d9d",
+  "generatedAt": "2026-09-10T03:35:06.053Z",
   "assets": {
     "/assets/favicon.svg": "34684dafa634",
     "/css/catalog.css": "4dd50bcb4274",
@@ -9,9 +9,9 @@
     "/data/preview-downloads.json": "8f173ca3e536",
     "/data/pricing.json": "fd79eaf32ecd",
     "/data/templates.json": "b1cacb4d8810",
-    "/js/assistant-widget.js": "9613bfa4ceef",
+    "/js/assistant-widget.js": "21fd3d6c3dc5",
     "/js/catalog.js": "5f08c612f3e8",
-    "/js/demo-customizer.js": "8d61314f867c",
+    "/js/demo-customizer.js": "7bdc8d185ad1",
     "/js/demo-localize-pt.js": "197fb665ad9f",
     "/js/demo-quote-bridge.js": "c839b7ac5904",
     "/js/quote.js": "57803e54eade",
