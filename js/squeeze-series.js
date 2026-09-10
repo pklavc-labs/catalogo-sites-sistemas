@@ -5,6 +5,9 @@
   const layoutFix = document.createElement('style');
   layoutFix.textContent = '.sq-panel,.sq-panel-item{width:100%;min-width:0}.sq-panel-copy{min-width:0}';
   document.head.append(layoutFix);
+  const controlStyle = document.createElement('style');
+  controlStyle.textContent = '.sq-controls button{width:auto!important;height:auto!important;min-width:48px!important;padding:12px 17px!important;border:1px solid rgb(255 255 255 / .25)!important;border-radius:999px!important;background:linear-gradient(135deg,rgb(110 231 208 / .95),rgb(77 183 225 / .9))!important;box-shadow:0 8px 22px rgb(36 211 238 / .2)!important;color:#07111c!important;font:800 22px/1 system-ui!important}.sq-controls button:hover{transform:translateY(-2px)!important;filter:brightness(1.08)!important}';
+  document.head.append(controlStyle);
   const overflowFix = document.createElement('style');
   overflowFix.textContent = 'html,body{overflow-x:hidden}.squeeze-series{box-sizing:border-box}.sq-window,.sq-blog-window{max-width:100%}';
   document.head.append(overflowFix);
@@ -33,7 +36,7 @@
     const instance = document.createElement('section');
     instance.className = 'sq-instance';
     instance.setAttribute('aria-label', label);
-    instance.innerHTML = `<header class="sq-heading"><h2>${escapeHtml(label)}</h2><div class="sq-controls"><button type="button" aria-label="Modelo anterior"><span>←</span></button><button type="button" aria-label="Próximo modelo"><span>→</span></button></div></header><div class="sq-window"><div class="sq-strip" role="tablist" aria-label="${escapeHtml(label)}"></div></div><div class="sq-panel" role="tabpanel" aria-live="polite"></div>`;
+    instance.innerHTML = `<header class="sq-heading"><h2>${escapeHtml(label)}</h2><div class="sq-controls"><button type="button" aria-label="Modelo anterior">↼</button><button type="button" aria-label="Próximo modelo">⇀</button></div></header><div class="sq-window"><div class="sq-strip" role="tablist" aria-label="${escapeHtml(label)}"></div></div><div class="sq-panel" role="tabpanel" aria-live="polite"></div>`;
     const strip = instance.querySelector('.sq-strip');
     const panel = instance.querySelector('.sq-panel');
 
