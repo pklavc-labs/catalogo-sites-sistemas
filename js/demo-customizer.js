@@ -93,7 +93,7 @@
   }
   function mount() {
     ensureLiquidGlass(); style(); editableTextNodes(); buttonTextEditors(); applyLiquidButtons();
-    const back = document.createElement('a'); back.className = 'catalog-back-link catalog-liquid-button'; back.href = '../../'; back.textContent = '← Voltar aos templates'; document.body.append(back);
+    const back = document.createElement('a'); back.className = 'catalog-back-link catalog-liquid-button'; back.href = '/'; back.textContent = '← Voltar aos templates'; document.body.append(back);
     const controls = document.createElement('div'); controls.className = 'catalog-controls';
     const visual = document.createElement('button'); visual.type = 'button'; visual.className = 'catalog-visual-button catalog-liquid-button'; visual.textContent = 'Personalizar visual'; visual.onclick = () => openEditor('visual', 'Personalizar visual');
     const textLock = document.createElement('button'); textLock.type = 'button'; textLock.className = 'catalog-lock-button catalog-liquid-button'; textLock.dataset.editLock = 'texts'; textLock.title = 'Bloquear ou desbloquear edição de textos'; textLock.onclick = () => { editMode.texts = !editMode.texts; updateEditMode(); };
